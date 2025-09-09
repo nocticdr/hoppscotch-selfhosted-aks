@@ -20,15 +20,16 @@ flowchart TD
     
     B --> C[Create Private Endpoint]
     B --> E[Create PostgreSQL Extension]
+    B --> H[Create Kubernetes Secrets]
     
     D --> G[Create Kubernetes Namespace]
     F --> G
     
-    G --> H[Create Kubernetes Secrets]
     G --> I[Create ConfigMap]
     
     H --> J[Deploy Cloudflared]
     I --> K[Deploy Hoppscotch Application]
+    H --> K
     
     J --> L[Create ClusterIP Service]
     K --> L
