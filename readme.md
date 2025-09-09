@@ -62,7 +62,7 @@ flowchart TD
 - Cloudflare account with a domain
 - Azure PostgreSQL Flexible Server
 - Azure Container Registry (ACR) integrated with AKS
-- AKS cluster with node taints configured for your environment (e.g., `platform=lin14n:NoSchedule` for nprod, `platform=lin01:NoSchedule` for prod)
+- AKS cluster with node taints configured for your environment (e.g., `platform=lin01n:NoSchedule` for nprod, `platform=lin01:NoSchedule` for prod)
 
 ## Directory Structure
 
