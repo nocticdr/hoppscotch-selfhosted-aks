@@ -29,21 +29,21 @@ flowchart TD
     M --> N[Verify Application Access]
     N --> O[Configure Admin Access]
     
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#f3e5f5
-    style D fill:#fff3e0
-    style E fill:#f3e5f5
-    style F fill:#e8f5e8
-    style G fill:#fff8e1
-    style H fill:#fff8e1
-    style I fill:#fff8e1
-    style J fill:#fff8e1
-    style K fill:#fff8e1
-    style L fill:#fff8e1
-    style M fill:#fff8e1
-    style N fill:#e8f5e8
-    style O fill:#e8f5e8
+    style A fill:#e1f5fe,color:#000000
+    style B fill:#f3e5f5,color:#000000
+    style C fill:#f3e5f5,color:#000000
+    style D fill:#fff3e0,color:#000000
+    style E fill:#f3e5f5,color:#000000
+    style F fill:#e8f5e8,color:#000000
+    style G fill:#fff8e1,color:#000000
+    style H fill:#fff8e1,color:#000000
+    style I fill:#fff8e1,color:#000000
+    style J fill:#fff8e1,color:#000000
+    style K fill:#fff8e1,color:#000000
+    style L fill:#fff8e1,color:#000000
+    style M fill:#fff8e1,color:#000000
+    style N fill:#e8f5e8,color:#000000
+    style O fill:#e8f5e8,color:#000000
 ```
 
 ## Prerequisites
