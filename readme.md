@@ -15,16 +15,24 @@ This guide documents the complete deployment of Hoppscotch (API testing tool) on
 ```mermaid
 flowchart TD
     A[Set Environment Variables] --> B[Create Azure PostgreSQL Database]
+    A --> D[Import Images to ACR]
+    A --> F[Configure Cloudflare Tunnel]
+    
     B --> C[Create Private Endpoint]
-    C --> D[Import Images to ACR]
-    D --> E[Create PostgreSQL Extension]
-    E --> F[Configure Cloudflare Tunnel]
-    F --> G[Create Kubernetes Namespace]
+    B --> E[Create PostgreSQL Extension]
+    
+    D --> G[Create Kubernetes Namespace]
+    F --> G
+    
     G --> H[Create Kubernetes Secrets]
-    H --> I[Deploy Cloudflared]
-    I --> J[Create ConfigMap]
-    J --> K[Deploy Hoppscotch Application]
-    K --> L[Create ClusterIP Service]
+    G --> I[Create ConfigMap]
+    
+    H --> J[Deploy Cloudflared]
+    I --> K[Deploy Hoppscotch Application]
+    
+    J --> L[Create ClusterIP Service]
+    K --> L
+    
     L --> M[Run Database Migration]
     M --> N[Verify Application Access]
     N --> O[Configure Admin Access]
