@@ -10,7 +10,7 @@ This guide documents the complete deployment of Hoppscotch (API testing tool) on
 - **Platform**: Azure Kubernetes Service (AKS)
 - **Image Registry**: Azure Container Registry (ACR)
 
-## Installation Flow
+## Installation Sequence with dependencies
 
 ```mermaid
 flowchart TD
