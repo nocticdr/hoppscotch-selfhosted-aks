@@ -10,6 +10,42 @@ This guide documents the complete deployment of Hoppscotch (API testing tool) on
 - **Platform**: Azure Kubernetes Service (AKS)
 - **Image Registry**: Azure Container Registry (ACR)
 
+## Installation Flow
+
+```mermaid
+flowchart TD
+    A[Set Environment Variables] --> B[Create Azure PostgreSQL Database]
+    B --> C[Create Private Endpoint]
+    C --> D[Import Images to ACR]
+    D --> E[Create PostgreSQL Extension]
+    E --> F[Configure Cloudflare Tunnel]
+    F --> G[Create Kubernetes Namespace]
+    G --> H[Create Kubernetes Secrets]
+    H --> I[Deploy Cloudflared]
+    I --> J[Create ConfigMap]
+    J --> K[Deploy Hoppscotch Application]
+    K --> L[Create ClusterIP Service]
+    L --> M[Run Database Migration]
+    M --> N[Verify Application Access]
+    N --> O[Configure Admin Access]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#f3e5f5
+    style D fill:#fff3e0
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
+    style G fill:#fff8e1
+    style H fill:#fff8e1
+    style I fill:#fff8e1
+    style J fill:#fff8e1
+    style K fill:#fff8e1
+    style L fill:#fff8e1
+    style M fill:#fff8e1
+    style N fill:#e8f5e8
+    style O fill:#e8f5e8
+```
+
 ## Prerequisites
 
 - Azure CLI installed and configured
