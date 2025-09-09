@@ -73,10 +73,9 @@ hoppscotch/
 ├── 3-cloudflared.yaml
 ├── 4-deployment.yaml
 ├── 5-cluster-ip-service.yaml
-├── 6-config_map.yaml
-├── 7-db-migration-job.yaml
-├── 8-postgres-client.yaml
-└── update_postgre.sh
+├── 6-config-map.yaml
+├── 7-db-migration-job.yaml 
+└── 8-postgres-client.yaml
 ```
 
 ## Environment Variables
