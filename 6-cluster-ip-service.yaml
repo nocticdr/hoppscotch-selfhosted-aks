@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hoppscotch-aio-service
+  namespace: hoppscotch
+  labels:
+    app: hoppscotch-aio
+spec:
+  selector:
+    app: hoppscotch-aio
+  ports:
+  - name: app
+    port: 80
+    targetPort: 3000
+    protocol: TCP
+  - name: admin
+    port: 3100
+    targetPort: 3100
+    protocol: TCP
+  - name: backend
+    port: 3170
+    targetPort: 3170
+    protocol: TCP
+  type: ClusterIP

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hoppscotch-aio
+  namespace: hoppscotch
+  labels:
+    app: hoppscotch-aio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hoppscotch-aio
+  template:
+    metadata:
+      labels:
+        app: hoppscotch-aio
+    spec:
+      tolerations:
+        - key: "platform"
+          operator: "Equal"
+          value: "YOUR_NODE_NAME"
+          effect: "NoSchedule"
+      containers:
+      - name: hoppscotch-aio
+        image: YOUR_ACR_NAME.azurecr.io/hoppscotch:v2025.8.1
+        ports:
+        - containerPort: 3000
+          name: app
+        - containerPort: 3100
+          name: admin
+        - containerPort: 3170
+          name: backend
+        envFrom:
+        - configMapRef:
+            name: hoppscotch-aio-config
+        - secretRef:
+            name: hoppscotch-aio-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+
+#UPDATE YOUR_ACR_NAME and YOUR_NODE_NAME

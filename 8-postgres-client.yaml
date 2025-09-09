@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres-client
+  namespace: hoppscotch
+spec:
+  tolerations:
+    - key: "platform"
+      operator: "Equal"
+      value: "YOUR_NODE_NAME"
+      effect: "NoSchedule"
+  restartPolicy: Never
+  containers:
+  - name: postgres-client
+    image: YOUR_ACR_NAME.azurecr.io/postgres:15-alpine
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "50m"
+      limits:
+        memory: "128Mi"
+        cpu: "100m"
+    command: ["sleep"]
+    args: ["3600"]
+    env:
+    - name: PGHOST
+      value: "POSTGRES_SERVER_NAME.postgres.database.azure.com"
+    - name: PGPORT
+      value: "5432"
+    - name: PGDATABASE
+      value: "hoppscotch"
+    - name: PGUSER
+      value: "POSTGRES_USER"
+    - name: PGSSLMODE
+      value: "require"
+
+#UPDATE YOUR_NODE_NAME and YOUR_ACR_NAME, POSTGRES_SERVER_NAME and POSTGRES_USER

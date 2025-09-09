@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: hoppscotch
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: cloudflared }
+  template:
+    metadata:
+      labels: { app: cloudflared }
+    spec:
+      tolerations:
+      - key: "platform"
+        operator: "Equal"
+        value: "YOUR_NODE_NAME" 
+        effect: "NoSchedule"
+      containers:
+        - name: cloudflared
+          image: YOUR_ACR_NAME.azurecr.io/cloudflared:latest  # Change to acr4prod for prod environment
+          args:
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token
+            - $(TUNNEL_TOKEN)
+          env:
+            - name: TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hoppscotch-aio-secrets
+                  key: TUNNEL_TOKEN
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits:   { cpu: "200m", memory: "256Mi" }
+
+#UPDATE YOUR_ACR_NAME and YOUR_NODE_NAME

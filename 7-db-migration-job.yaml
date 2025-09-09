@@ -1,0 +1,46 @@
+# Migration job without tolerations for testing
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hoppscotch-db-migration
+  namespace: hoppscotch
+spec:
+  template:
+    spec:
+      tolerations:
+        - key: "platform"
+          operator: "Equal"
+          value: "YOUR_NODE_NAME"
+          effect: "NoSchedule"
+      restartPolicy: OnFailure
+      containers:
+      - name: migration
+        image: YOUR_ACR_NAME.azurecr.io/hoppscotch:v2025.8.1
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        command: ["/bin/sh"]
+        args:
+        - -c
+        - |
+          echo "Starting database migration..."
+          echo "Current directory: $(pwd)"
+          echo "Checking /dist directory..."
+          ls -la /dist/ || echo "No /dist directory"
+          echo "Checking /dist/backend directory..."
+          ls -la /dist/backend/ || echo "No /dist/backend directory"
+          echo "Checking for prisma..."
+          which npx || echo "npx not found"
+          npx --version || echo "npx version failed"
+          echo "Attempting migration..."
+          cd /dist/backend && npx prisma migrate deploy || echo "Migration failed"
+          echo "Migration process completed!"
+        envFrom:
+        - configMapRef:
+            name: hoppscotch-aio-config
+        - secretRef:
+            name: hoppscotch-aio-secrets

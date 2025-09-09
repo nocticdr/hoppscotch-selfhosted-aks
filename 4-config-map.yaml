@@ -1,0 +1,26 @@
+# ConfigMap for AIO configuration based on official documentation
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hoppscotch-aio-config
+  namespace: hoppscotch
+data:
+  # Required AIO variables
+  WHITELISTED_ORIGINS: ",https://hopp.DOMAIN_SUFFIX,http://localhost:3170,http://localhost:3000,http://localhost:3100,app://localhost_3200,app://hoppscotch"
+  # Frontend configuration
+  ENABLE_SUBPATH_BASED_ACCESS: "true"
+  # Base URLs
+  VITE_BASE_URL: "https://hopp.DOMAIN_SUFFIX"
+  VITE_SHORTCODE_BASE_URL: "https://hopp.DOMAIN_SUFFIX"
+  VITE_ADMIN_URL: "https://hopp.DOMAIN_SUFFIX/admin"
+  # Backend URLs
+  VITE_BACKEND_GQL_URL: "https://hopp.DOMAIN_SUFFIX/backend/graphql"
+  VITE_BACKEND_WS_URL: "wss://hopp.DOMAIN_SUFFIX/backend/graphql"
+  VITE_BACKEND_API_URL: "https://hopp.DOMAIN_SUFFIX/backend/v1"
+  # Optional links
+  VITE_APP_TOS_LINK: ""
+  VITE_APP_PRIVACY_POLICY_LINK: ""
+  # Optional alternate port
+  HOPP_AIO_ALTERNATE_PORT: "3000"
+
+#UPDATE DOMAIN_SUFFIX
