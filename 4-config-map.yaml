@@ -22,5 +22,7 @@ data:
   VITE_APP_PRIVACY_POLICY_LINK: ""
   # Optional alternate port
   HOPP_AIO_ALTERNATE_PORT: "3000"
-
-#UPDATE DOMAIN_SUFFIX
+  # Enable saving request history
+  ENABLE_HISTORY: "true"
+  # Optional: maximum number of requests to keep per user
+  HISTORY_MAX_REQUESTS: "1000"
