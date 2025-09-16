@@ -7,6 +7,9 @@ metadata:
 data:
   # Required AIO variables
   WHITELISTED_ORIGINS: "app://hopp.DOMAIN_SUFFIX,https://app.hopp_DOMAIN_SUFFIX,https://hopp.DOMAIN_SUFFIX,http://localhost:3170,http://localhost:3000,http://localhost:3100,app://localhost_3200,app://hoppscotch"
+  #app://hopp.DOMAIN_SUFFIX is for Mac desktop client
+  #https://app.hopp_DOMAIN_SUFFIX is for Windows desktop client - note underscore instead of dot
+  
   # Frontend configuration
   ENABLE_SUBPATH_BASED_ACCESS: "true"
   # Base URLs
